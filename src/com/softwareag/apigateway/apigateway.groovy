@@ -36,14 +36,14 @@ package src.com.softwareag.apigateway
 
 
 def verifyAPIGatewayIsRunning() {
-    retryAttempts = 15
+    retryAttempts = 20
     attempt = 0
     println("checking whether APIGateway has started ")
     while(attempt<retryAttempts) {
         try {
         if(pingService()==200) {
             print("API Gateway is up and running")
-            return  true
+            return
         }
         }
         catch (Exception e) {
@@ -54,8 +54,7 @@ def verifyAPIGatewayIsRunning() {
         println("Total sleep time "+attempt*10+" sec")
 
     }
-    print("APIGateway is not getting started")
-    return false
+    error("APIGateway is not getting started")
 }
 
 def pingService() {
@@ -67,7 +66,5 @@ def pingService() {
 }
 
 static  void main(String[] args) {
-    shutdown("c:/apigateway105","default");
-    startup("c:/apigateway105","default");
     verifyAPIGatewayIsRunning()
 }
