@@ -2,15 +2,14 @@
 package src.com.softwareag.apigateway
 
     def shutdown(installDir, tenant){
+        installationDir = "${installDir}/profiles/IS_" + "${tenant}" + "/bin"
 
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-        installationDir = "${installDir}/profiles/IS_" + "${tenant}" + "/bin"
         dir(installationDir){
             bat "shutdown.bat"
         }
         }
         else {
-            installationDir = "${installDir}/profiles/IS_" + "${tenant}" + "/bin"
             dir(installationDir){
                 sh "shutdown.sh"
             }
@@ -19,15 +18,13 @@ package src.com.softwareag.apigateway
 
 
     def startup(installDir, tenant){
-
+        installationDir = "${installDir}/profiles/IS_" + "${tenant}" + "/bin"
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            installationDir = "${installDir}/profiles/IS_" + "${tenant}" + "/bin"
             dir(installationDir) {
                 bat "startup.bat"
             }
         }
         else {
-            installationDir = "${installDir}/profiles/IS_" + "${tenant}" + "/bin"
             dir(installationDir){
                 sh "startup.sh"
             }
