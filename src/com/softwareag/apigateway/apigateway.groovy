@@ -36,18 +36,22 @@ package src.com.softwareag.apigateway
 
 
 def verifyAPIGatewayIsRunning() {
-    print("Try to check APIGateway is up and running")
     retryAttempts = 10
     attempt = 0
     while(attempt<retryAttempts) {
+        try {
         if(pingService()==200) {
             print("API Gateway is up and running")
             return  true
         }
-        Thread.sleep("10000")
+        }
+        catch (Exception e) {
+            println("Try to check APIGateway is up and running")
+        }
+        Thread.sleep(10000)
         attempt++
-        print("sleeping for 10 seconds");
-        print("Total sleep time "+attempt*10)
+        println("Attempting in another 10 seconds");
+        println("Total sleep time "+attempt*10+" sec")
 
     }
     print("APIGateway is not getting started")
@@ -55,11 +59,11 @@ def verifyAPIGatewayIsRunning() {
 }
 
 def pingService() {
-    //assuming the scripts run in the same environment as apigateway
-    def get = new URL("http://localhost:5555/rest/apigateway/health").openConnection();
-    get.setRequestProperty("Content-Type", "application/json");
-    get.setRequestProperty("Accept", "application/json")
-    return get.getResponseCode();
+        //assuming the scripts run in the same environment as apigateway
+        def get = new URL("http://localhost:5555/rest/apigateway/health").openConnection();
+        get.setRequestProperty("Content-Type", "application/json");
+        get.setRequestProperty("Accept", "application/json")
+        return get.getResponseCode();
 }
 
 static  void main(String[] args) {
