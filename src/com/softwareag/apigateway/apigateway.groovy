@@ -170,14 +170,21 @@ def replaceSilentScript(location,params) {
     }
 }
 
-
+def deleteInstallationfolder(location) {
+    def installLocation = new File(location)
+    def deleted =  installLocation.deleteDir();
+    assert deleted;
+}
 
 static  void main(String[] args) {
+    //script execution samples
+
     //can we use the same installer jar for all version ?
-    //def params  = ['${InstallationLocation}':'','${Serverurl}':'','${microgatewaylicense}':'','${apigatewaylicense}':'','${licenselocation}':'']
+    //def params  = ['${InstallationLocation}':'c:/apigateway107','${Serverurl}':'http://aquarius_dae.eur.ad.sag/cgi-bin/dataserveYAI_PI_107oct2020.cgi','${microgatewaylicense}':'Microgateway103.xml','${apigatewaylicense}':'49_APIGatewayAdvanced101.xml','${licenselocation}':'C:/Users/srag/Desktop/license']
     //replaceSilentScript(params)
     //downloadInstallationJar("http://aquarius_dae.eur.ad.sag/PDShare/WWW/dataserve107oct2020_SIC/data/SoftwareAGInstaller.jar","C:/Users/srag/Downloads")
 
-    unInstallAPIGateway('C:\\apigateway107')
+    //unInstallAPIGateway('C:\\apigateway107')
 
+    deleteInstallationfolder("c:/apigateweay107")
 }
