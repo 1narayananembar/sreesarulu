@@ -81,10 +81,10 @@ def unInstallAPIGateway(installationDir){
 
     dir(installationDir) {
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            bat "java -jar ${installationDir}/install/Distman.jar -installDir " + $ {installDir} + " -readUninstallScript -console"
+            bat "java -jar ${installationDir}/install/Distman.jar -installDir " + $ {installationDir} + " -readUninstallScript -console"
         }
         else {
-            sh "java -jar ${installationDir}/install/Distman.jar -installDir " + $ {installDir} + " -readUninstallScript -console"
+            sh "java -jar ${installationDir}/install/Distman.jar -installDir " + $ {installationDir} + " -readUninstallScript -console"
         }
     }
 }
