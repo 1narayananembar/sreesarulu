@@ -54,7 +54,7 @@ def verifyAPIGatewayIsRunning() {
         println("Total sleep time "+attempt*10+" sec")
 
     }
-    error("APIGateway is not getting started")
+    //error("APIGateway is not getting started")
 }
 
 def pingService() {
@@ -81,10 +81,10 @@ def unInstallAPIGateway(installationDir){
 
     dir(installationDir) {
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            bat "java -jar ${installDir}/install/Distman.jar -installDir " + $ {installDir} + " -readUninstallScript -console"
+            bat "java -jar ${installationDir}/install/Distman.jar -installDir " + $ {installDir} + " -readUninstallScript -console"
         }
         else {
-            sh "java -jar ${installDir}/install/Distman.jar -installDir " + $ {installDir} + " -readUninstallScript -console"
+            sh "java -jar ${installationDir}/install/Distman.jar -installDir " + $ {installDir} + " -readUninstallScript -console"
         }
     }
 }
@@ -142,14 +142,14 @@ def downloadInstallationJar(String fileURL, String saveDir)
             System.out.println("File downloaded");
         } else {
             System.out.println("No file to download. Server replied HTTP code: " + responseCode);
-            error("No file to download. Server replied HTTP code: " + responseCode);
+            //error("No file to download. Server replied HTTP code: " + responseCode);
         }
         httpConn.disconnect();
     }
     catch (Exception e)
     {
         print("Error in downloading jar file "+e)
-        error("Issue in downloading the Installer jar " + e)
+        //error("Issue in downloading the Installer jar " + e)
     }
 }
 
@@ -174,8 +174,10 @@ def replaceSilentScript(location,params) {
 
 static  void main(String[] args) {
     //can we use the same installer jar for all version ?
-    //downloadInstallationJar("http://aquarius_dae.eur.ad.sag/PDShare/WWW/dataserve107oct2020_SIC/data/SoftwareAGInstaller1.jar","C:/Users/srag/Downloads")
     //def params  = ['${InstallationLocation}':'','${Serverurl}':'','${microgatewaylicense}':'','${apigatewaylicense}':'','${licenselocation}':'']
     //replaceSilentScript(params)
+    //downloadInstallationJar("http://aquarius_dae.eur.ad.sag/PDShare/WWW/dataserve107oct2020_SIC/data/SoftwareAGInstaller.jar","C:/Users/srag/Downloads")
+
+    unInstallAPIGateway('C:\\apigateway107')
 
 }
