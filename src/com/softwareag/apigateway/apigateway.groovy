@@ -172,7 +172,7 @@ def replaceSilentScript(location,params) {
 
 def deleteInstallationfolder(location) {
    dir(location) {
-
+       deleteDir()
    }
 }
 
