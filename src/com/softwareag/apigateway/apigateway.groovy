@@ -172,7 +172,7 @@ def replaceSilentScript(location,params) {
 
 def deleteInstallationfolder(location) {
    dir(location) {
-       deleteDir(location)
+
    }
 }
 
@@ -186,5 +186,5 @@ static  void main(String[] args) {
 
     //unInstallAPIGateway('C:\\apigateway107')
 
-    deleteInstallationfolder("c:/apigateweay107")
+    deleteInstallationfolder('c:/apigateweay107')
 }
