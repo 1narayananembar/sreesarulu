@@ -171,9 +171,9 @@ def replaceSilentScript(location,params) {
 }
 
 def deleteInstallationfolder(location) {
-    def installLocation = new File(location)
-    def deleted =  installLocation.deleteDir();
-    assert deleted;
+   dir(location) {
+       deleteDir(location)
+   }
 }
 
 static  void main(String[] args) {
