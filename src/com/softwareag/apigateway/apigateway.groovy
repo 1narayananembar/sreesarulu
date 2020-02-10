@@ -69,9 +69,9 @@ def installAPIGateway(jarLocation, readscript) {
 
     dir(jarLocation) {
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            bat "java -jar SoftwareAGInstaller.jar -installDir  -readScript " + "${readscript}"
+            bat "java -jar SoftwareAGInstaller.jar  -readScript " + "${readscript}"
         } else {
-            sh "java - jar SoftwareAGInstaller.jar -installDir  -readScript " + "${readscript}"
+            sh "java - jar SoftwareAGInstaller.jar  -readScript " + "${readscript}"
         }
     }
 }
