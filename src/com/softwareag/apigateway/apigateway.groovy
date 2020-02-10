@@ -180,12 +180,12 @@ static  void main(String[] args) {
     //script execution samples
 
     //can we use the same installer jar for all version ?
-    //def params  = ['${InstallationLocation}':'c:/apigateway107','${Serverurl}':'http://aquarius_dae.eur.ad.sag/cgi-bin/dataserveYAI_PI_107oct2020.cgi','${microgatewaylicense}':'Microgateway103.xml','${apigatewaylicense}':'49_APIGatewayAdvanced101.xml','${licenselocation}':'C:/Users/srag/Desktop/license']
-    //replaceSilentScript(params)
+    def params  = ['${InstallationLocation}':'c:/apigateway107','${Serverurl}':'http://aquarius_dae.eur.ad.sag/cgi-bin/dataserveYAI_PI_107oct2020.cgi','${microgatewaylicense}':'Microgateway103.xml','${apigatewaylicense}':'49_APIGatewayAdvanced101.xml','${licenselocation}':'C:/Users/srag/Desktop/license']
+    replaceSilentScript(params)
     //downloadInstallationJar("http://aquarius_dae.eur.ad.sag/PDShare/WWW/dataserve107oct2020_SIC/data/SoftwareAGInstaller.jar","C:/Users/srag/Downloads")
 
     //unInstallAPIGateway('C:\\apigateway107')
 
     //deleteInstallationfolder('c:/apigateweay107')
-    installAPIGateway("C:\\Users\\srag\\Downloads","InstallGateway.txt")
+    //installAPIGateway("C:\\Users\\srag\\Downloads","InstallGateway.txt")
 }
