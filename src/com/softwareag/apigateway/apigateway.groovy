@@ -65,13 +65,13 @@ def pingService() {
         return get.getResponseCode();
 }
 
-def installAPIGateway(jarLocation,installDir, readscript) {
+def installAPIGateway(jarLocation, readscript) {
 
     dir(jarLocation) {
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            bat "java -jar SoftwareAGInstaller.jar -installDir " + installDir + " -readScript " + "${readscript}"
+            bat "java -jar SoftwareAGInstaller.jar  -readScript " + "${readscript}"
         } else {
-            sh "java - jar SoftwareAGInstaller.jar -installDir " + installDir + " -readScript " + "${readscript}"
+            sh "java - jar SoftwareAGInstaller.jar  -readScript " + "${readscript}"
         }
     }
 }
@@ -161,9 +161,9 @@ def pingAllNativeServices() {
 }
 
 //replace silent script parameters
-def replaceSilentScript(location,params) {
+def replaceSilentScript(location,scriptfile,params) {
     //Assuming the name of the script file doesnt change
-    def originalScript = new File(location+'InstallGateway.txt')
+    def originalScript = new File(location+scriptfile)
     for(parameter in params.keySet()) {
         def temp  = originalScript.text.replace(parameter,params.get(parameter))
         originalScript.text = temp
@@ -180,11 +180,12 @@ static  void main(String[] args) {
     //script execution samples
 
     //can we use the same installer jar for all version ?
-    //def params  = ['${InstallationLocation}':'c:/apigateway107','${Serverurl}':'http://aquarius_dae.eur.ad.sag/cgi-bin/dataserveYAI_PI_107oct2020.cgi','${microgatewaylicense}':'Microgateway103.xml','${apigatewaylicense}':'49_APIGatewayAdvanced101.xml','${licenselocation}':'C:/Users/srag/Desktop/license']
-    //replaceSilentScript(params)
+    def params  = ['${InstallationLocation}':'c:/apigateway107','${Serverurl}':'http://aquarius_dae.eur.ad.sag/cgi-bin/dataserveYAI_PI_107oct2020.cgi','${microgatewaylicense}':'Microgateway103.xml','${apigatewaylicense}':'49_APIGatewayAdvanced101.xml','${licenselocation}':'C:/Users/srag/Desktop/license']
+    replaceSilentScript(params)
     //downloadInstallationJar("http://aquarius_dae.eur.ad.sag/PDShare/WWW/dataserve107oct2020_SIC/data/SoftwareAGInstaller.jar","C:/Users/srag/Downloads")
 
     //unInstallAPIGateway('C:\\apigateway107')
 
-    deleteInstallationfolder('c:/apigateweay107')
+    //deleteInstallationfolder('c:/apigateweay107')
+    //installAPIGateway("C:\\Users\\srag\\Downloads","InstallGateway.txt")
 }
