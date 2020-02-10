@@ -161,9 +161,9 @@ def pingAllNativeServices() {
 }
 
 //replace silent script parameters
-def replaceSilentScript(location,params) {
+def replaceSilentScript(location,scriptfile,params) {
     //Assuming the name of the script file doesnt change
-    def originalScript = new File(location+'InstallGateway.txt')
+    def originalScript = new File(location+scriptfile)
     for(parameter in params.keySet()) {
         def temp  = originalScript.text.replace(parameter,params.get(parameter))
         originalScript.text = temp
