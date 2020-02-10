@@ -65,13 +65,13 @@ def pingService() {
         return get.getResponseCode();
 }
 
-def installAPIGateway(jarLocation,installDir, readscript) {
+def installAPIGateway(jarLocation, readscript) {
 
     dir(jarLocation) {
         if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            bat "java -jar SoftwareAGInstaller.jar -installDir " + installDir + " -readScript " + "${readscript}"
+            bat "java -jar SoftwareAGInstaller.jar -installDir  -readScript " + "${readscript}"
         } else {
-            sh "java - jar SoftwareAGInstaller.jar -installDir " + installDir + " -readScript " + "${readscript}"
+            sh "java - jar SoftwareAGInstaller.jar -installDir  -readScript " + "${readscript}"
         }
     }
 }
@@ -186,5 +186,6 @@ static  void main(String[] args) {
 
     //unInstallAPIGateway('C:\\apigateway107')
 
-    deleteInstallationfolder('c:/apigateweay107')
+    //deleteInstallationfolder('c:/apigateweay107')
+    installAPIGateway("C:\\Users\\srag\\Downloads","InstallGateway.txt")
 }
